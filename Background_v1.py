@@ -1,5 +1,5 @@
 """ Background_v1 by Sun Woo Yi
-This version will place the background image onto the screen.
+This version will make a black background.
 01/05/2023
 """
 
@@ -25,4 +25,4 @@ pygame.display.update()
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
+            quit()
