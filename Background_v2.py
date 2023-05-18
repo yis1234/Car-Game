@@ -1,4 +1,4 @@
-""" Background_v1 by Sun Woo Yi
+""" Background_v2 by Sun Woo Yi
 This version will make a background that I made move continuosly.
 01/05/2023
 """

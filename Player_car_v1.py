@@ -1,6 +1,7 @@
 """ Player_car_v1 by Sun Woo Yi
 This version will place the car that the player will use onto the 
-screen
+screen in the position that I want it to be in.
+18/05/2023
 """
 
 import pygame
