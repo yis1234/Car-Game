@@ -1,4 +1,4 @@
-""" Player_car_v2_testing_2 by Sun Woo Yi
+""" Player_car_v3_testing_2 by Sun Woo Yi
 This version will allow the car to move from left to right so
 that it is able to avoid incoming cars in future steps. This test will
 use a class and get the rect of the image.
@@ -37,7 +37,7 @@ class PlayerCar(pygame.sprite.Sprite):
 player_car = PlayerCar()
 
 # Create a sprite group for the player car
-# player_group = pygame.sprite.Group(player_car)
+player_group = pygame.sprite.Group(player_car)
 
 # this is used here for testing purposes
 clock = pygame.time.Clock()
@@ -49,7 +49,7 @@ while running:
 
     player_car.update(pygame.key.get_pressed())
     screen.fill((255, 255, 255))
-    player_car.draw(screen)
+    player_group.draw(screen)
     pygame.display.update()
     clock.tick(60)
 

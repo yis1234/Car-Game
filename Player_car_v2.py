@@ -1,5 +1,6 @@
-""" Player_car_v1 by Sun Woo Yi
-This version will change the size of the car to fit the screen
+""" Player_car_v2 by Sun Woo Yi
+This version will place the car that the player will use onto the 
+screen in the position that I want it to be in.
 18/05/2023
 """
 
@@ -18,7 +19,7 @@ screen = pygame.display.set_mode((window_width, window_height))
 PLAYER_CAR = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_1.png"), (20, 40))
 
 # place the PLAYER_CAR into the pygame
-screen.blit(PLAYER_CAR, (0, 0))
+screen.blit(PLAYER_CAR, (120, 250))
 
 pygame.display.update()
 

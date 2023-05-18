@@ -1,6 +1,7 @@
-""" Player_car_v2 by Sun Woo Yi
+""" Player_car_v3_testing_1 by Sun Woo Yi
 This version will allow the car to move from left to right so
-that it is able to avoid incoming cars in future steps.
+that it is able to avoid incoming cars in future steps. This test 
+will use the pygame.key.get_pressed() method.
 18/05/2023
 """
 
