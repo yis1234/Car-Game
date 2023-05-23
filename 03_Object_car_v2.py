@@ -24,8 +24,6 @@ object_car3 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_
 object_car4 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_5.png"), (20, 40))
 object_car5 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_6.png"), (20, 40))
 
-
-
 # Adding the cars to the screen
 screen.blit(object_car1, (random.randint(0, window_width), 0))
 screen.blit(object_car2, (random.randint(0, window_width), 0))

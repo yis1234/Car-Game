@@ -16,15 +16,15 @@ window_height = 377
 screen = pygame.display.set_mode((window_width, window_height))
 
 # Have two sets of backgrounds for continuously moving background
-background1 = pygame.image.load("Assessment/Car Game/Road2.png").convert_alpha()
-background2 = pygame.image.load("Assessment/Car Game/Road2.png").convert_alpha()
+background1 = pygame.image.load("Assessment/Car Game/Road2.png")
+background2 = pygame.image.load("Assessment/Car Game/Road2.png")
 
 # Set the initial positions of the images
 background1_y = 0
 background2_y = -window_height
 
 # Load the player car image
-PLAYER_CAR = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_1.png"), (20, 40)).convert_alpha()
+PLAYER_CAR = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_1.png"), (20, 40))
 
 # Create the player car sprite
 class PlayerCar(pygame.sprite.Sprite):
