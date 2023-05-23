@@ -1,5 +1,5 @@
-""" 00_CG_base_v1 by Sun Woo Yi
-Added 01_Background_v2 to the base component
+""" 00_CG_base_v3 by Sun Woo Yi
+Added 02_Player_car_v3_testing_2 to the 00_CG_base_v1
 20/05/23
 """
 
@@ -27,6 +27,28 @@ background2 = pygame.image.load("Assessment/Car Game/Road2.png")
 background1_y = 0
 background2_y = -window_height
 
+# Load the player car image
+PLAYER_CAR = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_1.png"), (20, 40))
+
+# Create the player car sprite
+class PlayerCar(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = PLAYER_CAR
+        self.rect = self.image.get_rect(center=(window_width/2, window_height-50))
+
+    def update(self, keys):
+        if keys[pygame.K_LEFT]:
+            self.rect.move_ip(-5, 0)
+        if keys[pygame.K_RIGHT]:
+            self.rect.move_ip(5, 0)
+        self.rect.clamp_ip(screen.get_rect())  # to make sure that the car does not go out of the screen
+
+player_car = PlayerCar()
+
+# Create a sprite group for the player car
+player_group = pygame.sprite.Group(player_car)
+
 def update_position():
     global background1_y, background2_y
     # Makes the background move downwards (speed can change throughout)
@@ -41,8 +63,9 @@ def update_position():
     # Draw the images on the screen
     screen.blit(background1, (0, background1_y))
     screen.blit(background2, (0, background2_y))
+    player_group.draw(screen)
     # Update the screen
-    pygame.display.flip()
+    pygame.display.update()
 
 # Keep the window open until the user closes it
 clock = pygame.time.Clock()
@@ -51,7 +74,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    player_car.update(pygame.key.get_pressed())
     update_position()
+    pygame.display.update()
     clock.tick(60)
 
 

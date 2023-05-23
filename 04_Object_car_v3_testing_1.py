@@ -1,4 +1,4 @@
-""" 03_Object_car_v3_testing_1 by Sun Woo Yi
+""" 04_Object_car_v3_testing_1 by Sun Woo Yi
 In this version of the component, the cars will spawn at 
 random positions on the top of the screen
 20/05/23

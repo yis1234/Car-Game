@@ -1,4 +1,4 @@
-""" Player_car_v3_testing_2 by Sun Woo Yi
+""" 03_Player_car_v3_testing_2 by Sun Woo Yi
 This version will allow the car to move from left to right so
 that it is able to avoid incoming cars in future steps. This test will
 use a class and get the rect of the image.

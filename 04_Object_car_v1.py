@@ -1,11 +1,9 @@
-""" 03_Object_car_v2 by Sun Woo Yi
-In this version of the component, the cars will spawn at 
-random positions on the top of the screen
+""" 04_Object_car_v1 by Sun Woo Yi
+In this version of the component, the object cars will be added to the pygame
 20/05/23
 """
 
 import pygame
-import random
 
 # Initialize Pygame
 pygame.init()
@@ -25,11 +23,11 @@ object_car4 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_
 object_car5 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_6.png"), (20, 40))
 
 # Adding the cars to the screen
-screen.blit(object_car1, (random.randint(0, window_width), 0))
-screen.blit(object_car2, (random.randint(0, window_width), 0))
-screen.blit(object_car3, (random.randint(0, window_width), 0))
-screen.blit(object_car4, (random.randint(0, window_width), 0))
-screen.blit(object_car5, (random.randint(0, window_width), 0))
+screen.blit(object_car1, (0, 0))
+screen.blit(object_car2, (10, 0))
+screen.blit(object_car3, (20, 0))
+screen.blit(object_car4, (30, 0))
+screen.blit(object_car5, (40, 0))
 pygame.display.update()
 
 while True:
