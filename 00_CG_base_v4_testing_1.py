@@ -1,5 +1,5 @@
-""" 00_CG_base_v3 by Sun Woo Yi
-Added 03_Player_car_v3_testing_2 to the 00_CG_base_v2
+""" 00_CG_base_v4 by Sun Woo Yi
+Added 04_Player_car_v3_testing_3 to the 00_CG_base_v3
 20/05/23
 """
 
@@ -14,21 +14,17 @@ window_height = 377
 
 # Create the window
 screen = pygame.display.set_mode((window_width, window_height))
-game_icon = pygame.image.load('Assessment/Car Game/game_icon.png')
-pygame.display.set_icon(game_icon)
-pygame.display.set_caption("Car Game - by Sun Woo Yi")
-font = pygame.font.Font('freesansbold.ttf', 20)
 
 # Have two sets of backgrounds for continuously moving background
-background1 = pygame.image.load("Assessment/Car Game/Road2.png")
-background2 = pygame.image.load("Assessment/Car Game/Road2.png")
+background1 = pygame.image.load("Assessment/Car Game/Road2.png").convert_alpha()
+background2 = pygame.image.load("Assessment/Car Game/Road2.png").convert_alpha()
 
 # Set the initial positions of the images
 background1_y = 0
 background2_y = -window_height
 
 # Load the player car image
-PLAYER_CAR = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_1.png"), (20, 40))
+PLAYER_CAR = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_1.png"), (20, 40)).convert_alpha()
 
 # Create the player car sprite
 class PlayerCar(pygame.sprite.Sprite):

@@ -1,5 +1,5 @@
-""" 00_CG_base_v1 by Sun Woo Yi
-Added 01_Background_v2 to the base component
+""" 00_CG_base_v2 by Sun Woo Yi
+Added 02_Game_window_v2 to the base component
 20/05/23
 """
 
