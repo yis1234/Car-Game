@@ -17,7 +17,7 @@ window_height = 377
 # Create the window
 screen = pygame.display.set_mode((window_width, window_height))
 
-PLAYER_CAR = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_1.png"), (20, 40))
+PLAYER_CAR = pygame.transform.scale(pygame.image.load("car_1.png"), (20, 40))
 
 # place the PLAYER_CAR into the pygame
 player_x = 120

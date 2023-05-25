@@ -1,4 +1,5 @@
-""" 00_CG_base_v3 by Sun Woo Yi
+""" 00_CG_base_v4 by Sun Woo Yi
+I added 04_Object_car_v3_testing_3 to 00_CG_base_v3
 To reduce the lagging of the game, I used .convert_alpha()
 20/05/23
 """
@@ -15,28 +16,33 @@ window_height = 377
 
 # Create the window
 screen = pygame.display.set_mode((window_width, window_height))
+game_icon = pygame.image.load('game_icon.png').convert_alpha()
+pygame.display.set_icon(game_icon)
+pygame.display.set_caption("Car Game - by Sun Woo Yi")
+font = pygame.font.Font('freesansbold.ttf', 20)
 
 # Have two sets of backgrounds for continuously moving background
-background1 = pygame.image.load("Assessment/Car Game/Road2.png").convert_alpha()
-background2 = pygame.image.load("Assessment/Car Game/Road2.png").convert_alpha()
+background1 = pygame.image.load("Road2.png").convert_alpha()
+background2 = pygame.image.load("Road2.png").convert_alpha()
 
 # Set the initial positions of the images
 background1_y = 0
 background2_y = -window_height
 
 # Load the player car image
-PLAYER_CAR = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_1.png"), (30, 60)).convert_alpha()
+PLAYER_CAR = pygame.transform.scale(pygame.image.load("car_1.png"), (30, 60)).convert_alpha()
 
 # Changing the size of the object cars
-object_car1 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_2.png"), (30, 60)).convert_alpha()
-object_car2 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_3.png"), (30, 60)).convert_alpha()
-object_car3 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_4.png"), (30, 60)).convert_alpha()
-object_car4 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_5.png"), (30, 60)).convert_alpha()
-object_car5 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_6.png"), (30, 60)).convert_alpha()
+object_car1 = pygame.transform.scale(pygame.image.load("car_2.png"), (30, 60)).convert_alpha()
+object_car2 = pygame.transform.scale(pygame.image.load("car_3.png"), (30, 60)).convert_alpha()
+object_car3 = pygame.transform.scale(pygame.image.load("car_4.png"), (30, 60)).convert_alpha()
+object_car4 = pygame.transform.scale(pygame.image.load("car_5.png"), (30, 60)).convert_alpha()
+object_car5 = pygame.transform.scale(pygame.image.load("car_6.png"), (30, 60)).convert_alpha()
 
 cars = []  # list of active cars
 spawn_timer = 0  # time until the next car should spawn
 spawn_delay = 60  # time between car spawns (in frames)
+
 
 # Create the player car sprite
 class PlayerCar(pygame.sprite.Sprite):
@@ -52,16 +58,19 @@ class PlayerCar(pygame.sprite.Sprite):
             self.rect.move_ip(5, 0)
         self.rect.clamp_ip(screen.get_rect())  # to make sure that the car does not go out of the screen
 
+
 class ObjectCar:
     def __init__(self, image, rect, velocity):
         self.image = image
         self.rect = rect
         self.velocity = velocity
 
+
 player_car = PlayerCar()
 
 # Create a sprite group for the player car
 player_group = pygame.sprite.Group(player_car)
+
 
 def update_position():
     global background1_y, background2_y
@@ -75,6 +84,7 @@ def update_position():
     if background2_y >= window_height:
         background2_y = -window_height
 
+
 # Keep the window open until the user closes it
 clock = pygame.time.Clock()
 running = True
@@ -82,7 +92,6 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-            quit()
     player_car.update(pygame.key.get_pressed())
     update_position()
     pygame.display.update()
@@ -105,14 +114,12 @@ while running:
         cars.append(ObjectCar(car_image, car_rect, car_velocity))
         spawn_timer = spawn_delay
 
-
     # Move the cars down the screen with their individual velocities
     for car in cars:
         car.rect.top += car.velocity
 
     # Remove cars that have gone off the bottom of the screen
     cars = [car for car in cars if car.rect.bottom < window_height + 60]
-
 
     # Draw the background on the screen
     screen.blit(background1, (0, background1_y))
@@ -122,7 +129,9 @@ while running:
     for car in cars:
         screen.blit(car.image, car.rect)
     pygame.display.update()
+    print(len(cars))
     clock.tick(60)
 
 
 pygame.quit()
+quit()

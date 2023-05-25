@@ -20,11 +20,11 @@ window_height = 377
 screen = pygame.display.set_mode((window_width, window_height))
 
 # Changing the size of the object cars
-object_car1 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_2.png"), (20, 40)).convert_alpha()
-object_car2 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_3.png"), (20, 40)).convert_alpha()
-object_car3 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_4.png"), (20, 40)).convert_alpha()
-object_car4 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_5.png"), (20, 40)).convert_alpha()
-object_car5 = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_6.png"), (20, 40)).convert_alpha()
+object_car1 = pygame.transform.scale(pygame.image.load("car_2.png"), (20, 40)).convert_alpha()
+object_car2 = pygame.transform.scale(pygame.image.load("car_3.png"), (20, 40)).convert_alpha()
+object_car3 = pygame.transform.scale(pygame.image.load("car_4.png"), (20, 40)).convert_alpha()
+object_car4 = pygame.transform.scale(pygame.image.load("car_5.png"), (20, 40)).convert_alpha()
+object_car5 = pygame.transform.scale(pygame.image.load("car_6.png"), (20, 40)).convert_alpha()
 
 class Car:
     def __init__(self, image, rect, velocity):

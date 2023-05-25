@@ -18,7 +18,7 @@ window_height = 377
 screen = pygame.display.set_mode((window_width, window_height))
 
 # Load the player car image
-PLAYER_CAR = pygame.transform.scale(pygame.image.load("Assessment/Car Game/car_1.png"), (20, 40))
+PLAYER_CAR = pygame.transform.scale(pygame.image.load("car_1.png"), (20, 40))
 
 # Create the player car sprite
 class PlayerCar(pygame.sprite.Sprite):

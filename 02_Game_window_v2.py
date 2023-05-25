@@ -14,7 +14,7 @@ window_height = 377
 
 # Create the window
 screen = pygame.display.set_mode((window_width, window_height))
-game_icon = pygame.image.load('Assessment/Car Game/game_icon.png')
+game_icon = pygame.image.load('game_icon.png')
 pygame.display.set_icon(game_icon)
 pygame.display.set_caption("Car Game - by Sun Woo Yi")
 font = pygame.font.Font('freesansbold.ttf', 20)

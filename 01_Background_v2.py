@@ -16,8 +16,8 @@ window_height = 377
 screen = pygame.display.set_mode((window_width, window_height))
 
 # Have two sets of backgrounds for continuously moving background
-background1 = pygame.image.load("Assessment/Car Game/Road2.png")
-background2 = pygame.image.load("Assessment/Car Game/Road2.png")
+background1 = pygame.image.load("Road2.png")
+background2 = pygame.image.load("Road2.png")
 
 # Set the initial positions of the images
 background1_y = 0
