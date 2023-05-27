@@ -18,21 +18,24 @@ window_height = 377
 screen = pygame.display.set_mode((window_width, window_height))
 
 # Load the player car image
-PLAYER_CAR = pygame.transform.scale(pygame.image.load("car_1.png"), (20, 40))
+PLAYER_CAR = pygame.transform.scale(pygame.image.load("car_1.png"), 
+                                    (20, 40))
 
 # Create the player car sprite
 class PlayerCar(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.image = PLAYER_CAR
-        self.rect = self.image.get_rect(center=(window_width/2, window_height-50))
+        self.rect = self.image.get_rect(center=(window_width/2, 
+                                                window_height-50))
 
     def update(self, keys):
         if keys[pygame.K_LEFT]:
             self.rect.move_ip(-5, 0)
         if keys[pygame.K_RIGHT]:
             self.rect.move_ip(5, 0)
-        self.rect.clamp_ip(screen.get_rect())  # to make sure that the car does not go out of the screen
+        self.rect.clamp_ip(screen.get_rect())  
+        # to make sure that the car does not go out of the screen
 
 player_car = PlayerCar()
 

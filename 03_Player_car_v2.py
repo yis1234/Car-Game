@@ -30,6 +30,20 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        # for testing purposes
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                print("left")
+            if event.key == pygame.K_RIGHT:
+                print("right")
+            if event.key == pygame.K_UP:
+                print("up")
+            if event.key == pygame.K_DOWN:
+                print("down")
+            keys = pygame.key.get_pressed()
+            for i in range(len(keys)):
+                if keys[i]:
+                    print(pygame.key.name(i))
     clock.tick(60)
 
 pygame.quit()    

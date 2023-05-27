@@ -1,7 +1,7 @@
 """ 03_Player_car_v3_testing_1 by Sun Woo Yi
 This version will allow the car to move from left to right so
 that it is able to avoid incoming cars in future steps. This test 
-will use the pygame.key.get_pressed() method.
+will use the pygame.KEYDOWN() method.
 18/05/2023
 """
 
@@ -32,14 +32,26 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        # print statements for testing purposes
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 player_x_change = -5
+                print("left")
             if event.key == pygame.K_RIGHT:
                 player_x_change = 5
+                print("right")
+            if event.key == pygame.K_UP:
+                print("up")
+            if event.key == pygame.K_DOWN:
+                print("down")
+            keys = pygame.key.get_pressed()
+            for i in range(len(keys)):
+                if keys[i]:
+                    print(pygame.key.name(i))
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 player_x_change = 0
+            
     
     player_x += player_x_change
     screen.fill((255, 255, 255))
