@@ -1,5 +1,5 @@
 """ 01_Background_v2 by Sun Woo Yi
-This version will make a background that I made move continuosly.
+This version will make a background that I made move continuously.
 01/05/2023
 """
 
@@ -23,6 +23,7 @@ background2 = pygame.image.load("Road2.png")
 background1_y = 0
 background2_y = -window_height
 
+
 def update_position():
     global background1_y, background2_y
     # Makes the background move downwards (speed can change throughout)
@@ -39,6 +40,7 @@ def update_position():
     screen.blit(background2, (0, background2_y))
     # Update the screen
     pygame.display.flip()
+
 
 # Keep the window open until the user closes it
 clock = pygame.time.Clock()

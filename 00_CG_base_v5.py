@@ -1,6 +1,6 @@
 """ 00_CG_base_v5 by Sun Woo Yi
 I changed the code of the car game from 00_CG_base_v4 due to 
-it causeing an unexpected sudden spike in the CPU usage.
+it causing an unexpected sudden spike in the CPU usage.
 27/05/23
 """
 
@@ -45,7 +45,8 @@ MAX_OBJECT_CARS = 4
 class PlayerCar(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.transform.scale(PLAYER_CAR_IMAGE, (OBJECT_CAR_WIDTH, OBJECT_CAR_HEIGHT))
+        self.image = pygame.transform.scale\
+        (PLAYER_CAR_IMAGE, (OBJECT_CAR_WIDTH, OBJECT_CAR_HEIGHT))
         self.rect = self.image.get_rect(center=(PLAYER_CAR_X, PLAYER_CAR_Y))
 
     def update(self, key):
@@ -53,17 +54,21 @@ class PlayerCar(pygame.sprite.Sprite):
             self.rect.move_ip(-5, 0)
         if key[pygame.K_RIGHT]:
             self.rect.move_ip(5, 0)
-        self.rect.clamp_ip(screen.get_rect())  # to make sure that the car does not go out of the screen
+        self.rect.clamp_ip(screen.get_rect())
+        # to make sure that the car does not go out of the screen
 
 
 class ObjectCar(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.transform.scale(random.choice(OBJECT_CAR_IMAGES), (OBJECT_CAR_WIDTH, OBJECT_CAR_HEIGHT))
+        self.image = pygame.transform.scale(random.choice(OBJECT_CAR_IMAGES),
+                                            (OBJECT_CAR_WIDTH,
+                                             OBJECT_CAR_HEIGHT))
         self.rect = self.image.get_rect()
         self.rect.top = 0 - self.rect.height
         self.rect.left = random.randint(0, WINDOW_WIDTH - OBJECT_CAR_WIDTH)
-        while any(abs(self.rect.left - objCar.rect.left) < 30 for objCar in object_car_group):
+        while any(abs(self.rect.left - objCar.rect.left) < 30 for objCar in
+                  object_car_group):
             self.rect.left = random.randint(0, WINDOW_WIDTH - OBJECT_CAR_WIDTH)
         self.velocity = random.randint(1, 10)
 

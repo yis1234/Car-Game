@@ -1,4 +1,4 @@
-""" 06_Score_v2 by Sun Woo Yi
+""" 06_Score_v3 by Sun Woo Yi
 This version will show the score being reset to 0 when r is pressed
 26/05/2023
 """

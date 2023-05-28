@@ -1,6 +1,8 @@
-""" 00_CG_base_v7 by Sun Woo Yi
-I added 06_Score_v4 to the 00_CG_base_v6
-27/05/23
+""" 00_CG_base_v9 by Sun Woo Yi
+I fixed the scoring system so that the score is based on the number of cars
+passed by the player car rather than based on time and the score increases
+at a faster rate than before as the feedback said.
+28/05/23
 """
 
 import pygame
@@ -30,7 +32,7 @@ OBJECT_CAR_IMAGES = [
     pygame.image.load("car_5.png").convert_alpha(),
     pygame.image.load("car_6.png").convert_alpha(),
 ]
-BACKGROUND_IMAGE = pygame.image.load("Road2.png").convert_alpha()
+BACKGROUND_IMAGE = pygame.image.load("Road3.png").convert_alpha()
 
 # Set up the initial positions and properties of the objects
 BACKGROUND_Y = 0
@@ -86,9 +88,9 @@ object_car_group = pygame.sprite.Group()
 # Keep the game running until the user closes it
 clock = pygame.time.Clock()
 
-# Set the start time and high score
-start_time = pygame.time.get_ticks()
 high_score = 0
+score = 0
+
 
 # Load the high score from the CSV file if it exists
 try:
@@ -115,13 +117,16 @@ while running:
     if pygame.sprite.groupcollide(player_group, object_car_group, False,
                                   False):
         running = False
+        score = 0
+        player_car.center = (PLAYER_CAR_X, PLAYER_CAR_Y)
+        object_car_group.empty()
 
         # Wait for user input
         waiting = True
         while waiting:
             # Display the message
             screen.fill((255, 255, 255))
-            text = font.render("Press 'r' to restart or 'q' to quit", True,
+            text = font.render("Press 'R' to Restart or 'Q' to Quit", True,
                                (0, 0, 0))
             text_rect = text.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
             screen.blit(text, text_rect)
@@ -134,8 +139,7 @@ while running:
                         # Restart the game
                         running = True
                         waiting = False
-                        start_time = pygame.time.get_ticks()
-                        # Reset the start time
+                        score = 0
 
                         # Reset the object cars and the game background
                         object_car_group.empty()
@@ -164,6 +168,8 @@ while running:
         obj_car.rect.top += obj_car.velocity
         if obj_car.rect.top >= WINDOW_HEIGHT:
             obj_car.kill()
+        if obj_car.rect.top >= player_car.rect.bottom:
+            score += 1
 
     # Update the game display
     screen.blit(BACKGROUND_IMAGE, (0, BACKGROUND_Y))
@@ -173,9 +179,6 @@ while running:
         BACKGROUND_Y = 0
     player_group.draw(screen)
     object_car_group.draw(screen)
-    # Calculate the elapsed time and score
-    elapsed_time = pygame.time.get_ticks() - start_time
-    score = int(elapsed_time / 1000)  # Convert milliseconds to seconds
 
     # Update the high score if necessary
     if score > high_score:
@@ -185,10 +188,10 @@ while running:
             writer.writerow([high_score])
 
     # Draw the sprites and score
-    score_text = font.render("Score: {}".format(score), True, (255, 255, 255))
+    score_text = font.render("Score: {}".format(score), True, (0, 0, 255))
     screen.blit(score_text, (10, 10))
     high_score_text = font.render("High Score: {}".format(high_score), True,
-                                  (255, 255, 255))
+                                  (0, 0, 255))
     screen.blit(high_score_text, (10, 30))
     pygame.display.update()
 

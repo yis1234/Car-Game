@@ -1,6 +1,6 @@
 """ 04_Object_car_v2 by Sun Woo Yi
 In this version of the component, the cars will spawn at 
-random positions on the top of the screen
+random positions at the top of the screen
 20/05/23
 """
 

@@ -51,8 +51,7 @@ while running:
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 player_x_change = 0
-            
-    
+
     player_x += player_x_change
     screen.fill((255, 255, 255))
     screen.blit(PLAYER_CAR, (player_x, 250))

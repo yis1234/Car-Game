@@ -1,6 +1,6 @@
 """ 04_Object_car_v3_testing_2 by Sun Woo Yi
 In this version of the component, the cars will spawn at 
-random positions on the top of the screen and will start to move down at 
+random positions at the top of the screen and will start to move down at
 different speeds
 23/05/23
 """
@@ -19,11 +19,16 @@ window_height = 377
 screen = pygame.display.set_mode((window_width, window_height))
 
 # Changing the size of the object cars
-object_car1 = pygame.transform.scale(pygame.image.load("car_2.png"), (20, 40)).convert_alpha()
-object_car2 = pygame.transform.scale(pygame.image.load("car_3.png"), (20, 40)).convert_alpha()
-object_car3 = pygame.transform.scale(pygame.image.load("car_4.png"), (20, 40)).convert_alpha()
-object_car4 = pygame.transform.scale(pygame.image.load("car_5.png"), (20, 40)).convert_alpha()
-object_car5 = pygame.transform.scale(pygame.image.load("car_6.png"), (20, 40)).convert_alpha()
+object_car1 = pygame.transform.scale(pygame.image.load("car_2.png"),
+                                     (20, 40)).convert_alpha()
+object_car2 = pygame.transform.scale(pygame.image.load("car_3.png"),
+                                     (20, 40)).convert_alpha()
+object_car3 = pygame.transform.scale(pygame.image.load("car_4.png"),
+                                     (20, 40)).convert_alpha()
+object_car4 = pygame.transform.scale(pygame.image.load("car_5.png"),
+                                     (20, 40)).convert_alpha()
+object_car5 = pygame.transform.scale(pygame.image.load("car_6.png"),
+                                     (20, 40)).convert_alpha()
 
 
 # Set up the initial state of the game
@@ -43,11 +48,13 @@ while True:
     spawn_timer -= 1
     if spawn_timer <= 0 and len(cars) < 4:
         # Spawn a new car with a random velocity
-        car_image = random.choice([object_car1, object_car2, object_car3, object_car4, object_car5])
+        car_image = random.choice([object_car1, object_car2, object_car3,
+                                   object_car4, object_car5])
         car_y = 0 - car_image.get_height()
         car_velocity = random.randint(1, 5)
 
-        # Generate a random x position that is not within 20 pixels of any existing car's x position
+        # Generate a random x position that is not within 20 pixels of any
+        #  existing car's x position
         while True:
             car_x = random.randint(0, window_width - car_image.get_width())
             if all(abs(car_x - existing_car[1]) > 20 for existing_car in cars):
@@ -55,7 +62,6 @@ while True:
 
         cars.append((car_image, car_x, car_y, car_velocity))
         spawn_timer = spawn_delay
-
 
     # Move the cars down the screen with their individual velocities
     for i in range(len(cars)):

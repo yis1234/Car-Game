@@ -1,5 +1,5 @@
 """ 06_Score_v2 by Sun Woo Yi
-This version will show a score being displayed on the top right corner 
+This version will show a score being displayed in the top right corner
 of the screen and a score will be printed based on time
 26/05/2023
 """

@@ -1,6 +1,6 @@
 """ 05_Collisions_v2 by Sun Woo Yi
 This version will be carried on from 05_Collisions_v1_testing_2
-This version will show a colliion being detected between two objects
+This version will show a collision being detected between two objects
 When the objects collide the game will quit automatically
 26/05/2023
 """
@@ -17,6 +17,7 @@ window_height = 377
 # Create the window
 screen = pygame.display.set_mode((window_width, window_height))
 
+
 class GreenBox(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
@@ -25,6 +26,7 @@ class GreenBox(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+
 
 class BlueBox(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -60,7 +62,7 @@ while running:
 
     # Check for collisions
     if pygame.sprite.collide_rect(green_box, blue_box):
-        pygame.quit()
+        quit()
 
     # Draw the boxes
     screen.fill((255, 255, 255))

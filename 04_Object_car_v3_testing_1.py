@@ -1,6 +1,6 @@
 """ 04_Object_car_v3_testing_1 by Sun Woo Yi
 In this version of the component, the cars will spawn at 
-random positions on the top of the screen
+random positions at the top of the screen
 20/05/23
 """
 
@@ -46,7 +46,8 @@ while True:
     spawn_timer -= 1
     if spawn_timer <= 0:
         # Spawn a new car
-        car_image = random.choice([object_car1, object_car2, object_car3, object_car4, object_car5])
+        car_image = random.choice([object_car1, object_car2, object_car3,
+                                   object_car4, object_car5])
         car_x = random.randint(0, window_width - car_image.get_width())
         car_y = 0 - car_image.get_height()
         cars.append((car_image, car_x, car_y))

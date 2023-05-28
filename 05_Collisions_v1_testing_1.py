@@ -1,5 +1,5 @@
 """ 05_Collisions_v1_testing_1 by Sun Woo Yi
-This version will show a colliion being detected between two objects
+This version will show a collision being detected between two objects
 for testing purposes, "Collision" will be printed when the objects collide
 This version will use .colliderect() method to detect collisions
 26/05/2023
@@ -22,7 +22,8 @@ green_box_width = 50
 green_box_height = 50
 green_box_x = window_width/2 - green_box_width/2
 green_box_y = 377 - green_box_height
-green_box = pygame.Rect(green_box_x, green_box_y, green_box_width, green_box_height)
+green_box = pygame.Rect(green_box_x, green_box_y, green_box_width,
+                        green_box_height)
 
 # For testing purposes
 blue_box_width = 50
@@ -49,11 +50,9 @@ while running:
     pygame.draw.rect(screen, (0, 0, 255), blue_box)
     pygame.display.update()
     
-    green_box = pygame.Rect(green_box_x, green_box_y, green_box_width, green_box_height)
-    blue_box = pygame.Rect(blue_box_x, blue_box_y, blue_box_width, blue_box_height)
+    green_box = pygame.Rect(green_box_x, green_box_y, green_box_width,
+                            green_box_height)
+    blue_box = pygame.Rect(blue_box_x, blue_box_y, blue_box_width,
+                           blue_box_height)
 
 pygame.quit()
-
-
-
-

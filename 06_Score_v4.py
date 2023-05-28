@@ -1,4 +1,4 @@
-""" 06_Score_v2 by Sun Woo Yi
+""" 06_Score_v4 by Sun Woo Yi
 This version will have a high score that will be saved everytime the
 score is higher than the high score.
 27/05/2023
@@ -59,7 +59,8 @@ while running:
     screen.fill((0, 0, 0))
     score_text = font.render("Score: {}".format(score), True, (255, 255, 255))
     screen.blit(score_text, (10, 10))
-    high_score_text = font.render("High Score: {}".format(high_score), True, (255, 255, 255))
+    high_score_text = font.render("High Score: {}".format(high_score), True,
+                                  (255, 255, 255))
     screen.blit(high_score_text, (10, 30))
     pygame.display.update()
 

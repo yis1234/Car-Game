@@ -1,5 +1,5 @@
 """ 06_Score_v1 by Sun Woo Yi
-This version will show a score being displayed on the top right corner 
+This version will show a score being displayed in the top right corner
 of the screen
 26/05/2023
 """
@@ -28,4 +28,3 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-

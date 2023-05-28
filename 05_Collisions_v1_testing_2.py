@@ -1,8 +1,8 @@
 """ 05_Collisions_v1_testing_2 by Sun Woo Yi
-This version will show a colliion being detected between two objects
+This version will show a collision being detected between two objects
 for testing purposes, "Collision" will be printed when the objects collide
 This version will use pygame.sprite.collide_rect() method to detect collisions
-This way will be more helpful for adding on to current team
+This way will be more helpful for adding on to current code
 26/05/2023
 """
 
@@ -18,6 +18,7 @@ window_height = 377
 # Create the window
 screen = pygame.display.set_mode((window_width, window_height))
 
+
 class GreenBox(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
@@ -27,6 +28,7 @@ class GreenBox(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+
 class BlueBox(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
@@ -35,6 +37,7 @@ class BlueBox(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+
 
 # Set up the green box
 green_box_x = window_width/2 - 50/2

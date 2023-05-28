@@ -38,11 +38,13 @@ OBJECT_CAR_WIDTH = 30
 OBJECT_CAR_HEIGHT = 60
 MAX_OBJECT_CARS = 4
 
+
 # Create the player car sprite
 class PlayerCar(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.transform.scale(PLAYER_CAR_IMAGE, (OBJECT_CAR_WIDTH, OBJECT_CAR_HEIGHT))
+        self.image = pygame.transform.scale\
+        (PLAYER_CAR_IMAGE, (OBJECT_CAR_WIDTH, OBJECT_CAR_HEIGHT))
         self.rect = self.image.get_rect(center=(PLAYER_CAR_X, PLAYER_CAR_Y))
 
     def update(self, key):
@@ -52,15 +54,19 @@ class PlayerCar(pygame.sprite.Sprite):
             self.rect.move_ip(5, 0)
         self.rect.clamp_ip(screen.get_rect())
 
+
 # Create the object car sprite
 class ObjectCar(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.transform.scale(random.choice(OBJECT_CAR_IMAGES), (OBJECT_CAR_WIDTH, OBJECT_CAR_HEIGHT))
+        self.image = pygame.transform.scale\
+        (random.choice(OBJECT_CAR_IMAGES), (OBJECT_CAR_WIDTH,
+                                            OBJECT_CAR_HEIGHT))
         self.rect = self.image.get_rect()
         self.rect.top = 0 - self.rect.height
         self.rect.left = random.randint(0, WINDOW_WIDTH - OBJECT_CAR_WIDTH)
-        while any(abs(self.rect.left - objCar.rect.left) < 30 for objCar in object_car_group):
+        while any(abs(self.rect.left - objCar.rect.left) < 30 for objCar in
+                  object_car_group):
             self.rect.left = random.randint(0, WINDOW_WIDTH - OBJECT_CAR_WIDTH)
         self.velocity = random.randint(1, 5)
 
@@ -68,6 +74,7 @@ class ObjectCar(pygame.sprite.Sprite):
         self.rect.top += self.velocity
         if self.rect.top >= WINDOW_HEIGHT:
             self.kill()
+
 
 # Create sprite groups for the player car and object cars
 player_car = PlayerCar()
@@ -91,7 +98,8 @@ while running:
     player_car.update(keys)
 
     # Check for collisions between the player car and object cars
-    if pygame.sprite.groupcollide(player_group, object_car_group, False, False):
+    if pygame.sprite.groupcollide(player_group, object_car_group, False,
+                                  False):
         running = False
 
         # Wait for user input
@@ -99,7 +107,8 @@ while running:
         while waiting:
             # Display the message
             screen.fill((255, 255, 255))
-            text = font.render("Press 'r' to restart or 'q' to quit", True, (0, 0, 0))
+            text = font.render("Press 'r' to restart or 'q' to quit", True,
+                               (0, 0, 0))
             text_rect = text.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
             screen.blit(text, text_rect)
             pygame.display.update()
@@ -119,7 +128,8 @@ while running:
                         # Create the player car sprite
                         player_car = PlayerCar()
 
-                        # Create sprite groups for the player car and object cars
+                        # Create sprite groups for the player car and
+                        # object cars
                         player_group = pygame.sprite.Group(player_car)
                         object_car_group = pygame.sprite.Group()
 
@@ -154,4 +164,3 @@ while running:
 
 # Clean up
 pygame.quit()
-

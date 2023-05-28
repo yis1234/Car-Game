@@ -1,6 +1,7 @@
-""" 00_CG_base_v7 by Sun Woo Yi
-I added 06_Score_v4 to the 00_CG_base_v6
-27/05/23
+""" 00_CG_base_v8 by Sun Woo Yi
+I fixed the code according to the feedback given to me during the user 
+feedback.
+28/05/23
 """
 
 import pygame
@@ -30,7 +31,7 @@ OBJECT_CAR_IMAGES = [
     pygame.image.load("car_5.png").convert_alpha(),
     pygame.image.load("car_6.png").convert_alpha(),
 ]
-BACKGROUND_IMAGE = pygame.image.load("Road2.png").convert_alpha()
+BACKGROUND_IMAGE = pygame.image.load("Road3.png").convert_alpha()
 
 # Set up the initial positions and properties of the objects
 BACKGROUND_Y = 0
@@ -121,7 +122,7 @@ while running:
         while waiting:
             # Display the message
             screen.fill((255, 255, 255))
-            text = font.render("Press 'r' to restart or 'q' to quit", True,
+            text = font.render("Press 'R' to Restart or 'Q' to Quit", True,
                                (0, 0, 0))
             text_rect = text.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
             screen.blit(text, text_rect)
@@ -185,10 +186,10 @@ while running:
             writer.writerow([high_score])
 
     # Draw the sprites and score
-    score_text = font.render("Score: {}".format(score), True, (255, 255, 255))
+    score_text = font.render("Score: {}".format(score), True, (0, 0, 255))
     screen.blit(score_text, (10, 10))
     high_score_text = font.render("High Score: {}".format(high_score), True,
-                                  (255, 255, 255))
+                                  (0, 0, 255))
     screen.blit(high_score_text, (10, 30))
     pygame.display.update()
 

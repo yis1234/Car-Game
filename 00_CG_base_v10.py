@@ -1,6 +1,10 @@
-""" 00_CG_base_v7 by Sun Woo Yi
-I added 06_Score_v4 to the 00_CG_base_v6
-27/05/23
+"""00_CG_base_v10 by Sun Woo Yi
+I added an explanation screen to tell the users to use the left and right
+arrow keys to move the player car. The game will automatically start after
+3 seconds.
+This is the final version of my code and will be tested to see if it works
+as expected.
+28/05/23
 """
 
 import pygame
@@ -30,7 +34,7 @@ OBJECT_CAR_IMAGES = [
     pygame.image.load("car_5.png").convert_alpha(),
     pygame.image.load("car_6.png").convert_alpha(),
 ]
-BACKGROUND_IMAGE = pygame.image.load("Road2.png").convert_alpha()
+BACKGROUND_IMAGE = pygame.image.load("Road3.png").convert_alpha()
 
 # Set up the initial positions and properties of the objects
 BACKGROUND_Y = 0
@@ -45,8 +49,9 @@ MAX_OBJECT_CARS = 4
 class PlayerCar(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.transform.scale\
-        (PLAYER_CAR_IMAGE, (OBJECT_CAR_WIDTH, OBJECT_CAR_HEIGHT))
+        self.image = pygame.transform.scale(PLAYER_CAR_IMAGE,
+                                            (OBJECT_CAR_WIDTH,
+                                             OBJECT_CAR_HEIGHT))
         self.rect = self.image.get_rect(center=(PLAYER_CAR_X, PLAYER_CAR_Y))
 
     def update(self, key):
@@ -61,9 +66,9 @@ class PlayerCar(pygame.sprite.Sprite):
 class ObjectCar(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.transform.scale\
-        (random.choice(OBJECT_CAR_IMAGES), (OBJECT_CAR_WIDTH,
-                                            OBJECT_CAR_HEIGHT))
+        self.image = pygame.transform.scale(random.choice(OBJECT_CAR_IMAGES),
+                                            (OBJECT_CAR_WIDTH,
+                                             OBJECT_CAR_HEIGHT))
         self.rect = self.image.get_rect()
         self.rect.top = 0 - self.rect.height
         self.rect.left = random.randint(0, WINDOW_WIDTH - OBJECT_CAR_WIDTH)
@@ -86,9 +91,31 @@ object_car_group = pygame.sprite.Group()
 # Keep the game running until the user closes it
 clock = pygame.time.Clock()
 
-# Set the start time and high score
-start_time = pygame.time.get_ticks()
 high_score = 0
+score = 0
+
+# Create the text surface for the start screen
+line1_text = font.render("Use the left and right", True, (0, 0, 0))
+line2_text = font.render("arrow keys", True, (0, 0, 0))
+line3_text = font.render("to move the car", True, (0, 0, 0))
+
+
+# Display the start screen
+start_time = pygame.time.get_ticks()
+while pygame.time.get_ticks() - start_time < 3000:
+    screen.fill((255, 255, 255))
+    screen.blit(line1_text, (WINDOW_WIDTH/2 - line1_text.get_width()/2,
+                             WINDOW_HEIGHT/2 - line1_text.get_height()))
+    screen.blit(line2_text, (WINDOW_WIDTH/2 - line2_text.get_width()/2,
+                             WINDOW_HEIGHT/2))
+    screen.blit(line3_text, (WINDOW_WIDTH/2 - line3_text.get_width()/2,
+                             WINDOW_HEIGHT/2 + line3_text.get_height()))
+    pygame.display.update()
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                quit()
+
 
 # Load the high score from the CSV file if it exists
 try:
@@ -115,13 +142,16 @@ while running:
     if pygame.sprite.groupcollide(player_group, object_car_group, False,
                                   False):
         running = False
+        score = 0
+        player_car.center = (PLAYER_CAR_X, PLAYER_CAR_Y)
+        object_car_group.empty()
 
         # Wait for user input
         waiting = True
         while waiting:
             # Display the message
             screen.fill((255, 255, 255))
-            text = font.render("Press 'r' to restart or 'q' to quit", True,
+            text = font.render("Press 'R' to Restart or 'Q' to Quit", True,
                                (0, 0, 0))
             text_rect = text.get_rect(center=(WINDOW_WIDTH/2, WINDOW_HEIGHT/2))
             screen.blit(text, text_rect)
@@ -134,8 +164,7 @@ while running:
                         # Restart the game
                         running = True
                         waiting = False
-                        start_time = pygame.time.get_ticks()
-                        # Reset the start time
+                        score = 0
 
                         # Reset the object cars and the game background
                         object_car_group.empty()
@@ -164,6 +193,8 @@ while running:
         obj_car.rect.top += obj_car.velocity
         if obj_car.rect.top >= WINDOW_HEIGHT:
             obj_car.kill()
+        if obj_car.rect.top >= player_car.rect.bottom:
+            score += 1
 
     # Update the game display
     screen.blit(BACKGROUND_IMAGE, (0, BACKGROUND_Y))
@@ -173,9 +204,6 @@ while running:
         BACKGROUND_Y = 0
     player_group.draw(screen)
     object_car_group.draw(screen)
-    # Calculate the elapsed time and score
-    elapsed_time = pygame.time.get_ticks() - start_time
-    score = int(elapsed_time / 1000)  # Convert milliseconds to seconds
 
     # Update the high score if necessary
     if score > high_score:
@@ -185,15 +213,14 @@ while running:
             writer.writerow([high_score])
 
     # Draw the sprites and score
-    score_text = font.render("Score: {}".format(score), True, (255, 255, 255))
+    score_text = font.render("Score: {}".format(score), True, (0, 0, 255))
     screen.blit(score_text, (10, 10))
     high_score_text = font.render("High Score: {}".format(high_score), True,
-                                  (255, 255, 255))
+                                  (0, 0, 255))
     screen.blit(high_score_text, (10, 30))
     pygame.display.update()
 
     # Wait for the next frame
     clock.tick(60)
 
-# Clean up
 pygame.quit()
